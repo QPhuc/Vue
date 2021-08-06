@@ -1,5 +1,5 @@
 <template>
-    <from>
+    <from class="screen">
         <div class="container">
             <div class="row"><h1 class="title">Now, about your project...</h1></div>
             <div class="row">
@@ -32,15 +32,15 @@
                         </div>
                     </div>
                     <div class="section options">
-                        <p>
-                        What sort of creative work do you need help with? You can read
-                        about our services
-                        </p>
+                        <p>What sort of creative work do you need help with? You can read about our services</p>
                         <div class="row">
                             <div class="col-4">
                                 <div class="block">
                                 <label class="option">
                                     <!-- <span>{{ option.name }}</span> -->
+                                    <span>
+                                        aa
+                                    </span>
                                     <input
                                     type="checkbox"
                                     />
