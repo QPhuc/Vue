@@ -14,14 +14,13 @@
                     <label for="name">What is your full name?</label>
                     <input
                     id="name"
+                    :class="{ error: error.status, success: success.status }"
                     type="text"
                     placeholder="John Smith"
                     v-model="quiz.fullName"
                     />
-                    <!-- <p class="error-text" v-if="error.status">{{ error.text }}</p> -->
-                    <!-- <p class="success-text" v-if="success.status">
-                                    {{ success.text }}
-                                    </p> -->
+                    <p class="error-text" v-if="error.status">{{ error.text }}</p>
+                    <p class="success-text" v-if="success.status">{{ success.text }}</p>
                 </div>
                 <div class="form-item col">
                     <label for="email">What is your email address?</label>
@@ -41,7 +40,7 @@
                 </p>
                 <div class="row">
                 <div class="col-4" v-for="option in jobsObtions" :key="option.id">
-                    <div class="block">
+                    <div class="block" :style=" {backgroundColor: quiz.jobs.includes(option.id) ? 'var(--primary)' : '' } ">
                     <label class="option">
                         <span>{{ option.name }}</span>
                         <input type="checkbox" :value="option.id" v-model="quiz.jobs"/>
@@ -134,6 +133,14 @@ export default {
             desc: "",
             jobs: [],
         },
+        error: {
+            text: "",
+            status: false,
+        },
+        success: {
+            text: "",
+            status: false,
+        },
         jobsObtions: [
             {
             id: 1,
@@ -176,7 +183,26 @@ export default {
     },
     methods: {
         onSubmit() {
-        console.log(this.quiz);
+            console.log(this.quiz);
+            if (this.quiz.fullName.length < 6 || this.quiz.fullName.length > 18) {
+                this.error = {
+                    text: "Look failed! Full Name should be 6-18 characters.",
+                    status: true,
+                };
+                this.success = {
+                    text: "",
+                    status: false,
+                }
+            }else if (this.quiz.fullName.length > 5 && this.quiz.fullName.length < 19) {
+                this. success = {
+                    text: "Look greate!",
+                    status: true,
+                };
+                this.error = {
+                    text: "",
+                    status: false,
+                }
+            }
         },
     },
 };
